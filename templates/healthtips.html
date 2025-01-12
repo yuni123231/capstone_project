@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }}</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Menyertakan file CSS -->
+    <style>
+        .back-button {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{{ article.title }}</h1>
+        </header>
+        <div class="content">
+            {% for paragraph in article.content %}
+                <p>{{ paragraph }}</p>
+            {% endfor %}
+        </div>
+        <!-- Tombol Kembali -->
+        <a href="{{ url_for('artikel') }}">Kembali</a>
+    </div>
+</body>
+</html>

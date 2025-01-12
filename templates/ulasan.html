@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Tambah Ulasan{% endblock %}
+
+{% block content %}
+<div class="container-fluid py-4">
+    <div class="card">
+        <div class="card-header">Add Application Review</div>
+        <div class="card-body">
+            <form id="review-form">
+                <div class="mb-3">
+                    <label for="reviewText" class="form-label">Write Your Review:</label>
+                    <textarea class="form-control" id="reviewText" rows="4" placeholder="Share your experience..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-submit" id="submitButton">Submit Review</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="reviews-container" class="mt-4">
+        <h4>Previous Reviews:</h4>
+        <ul id="reviews-list" class="list-group">
+            {% for review in reviews %}
+                <li class="list-group-item">
+                    <p class="mb-0">{{ review.text }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<script>
+    document.getElementById('review-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const reviewText = document.getElementById('reviewText');
+        const submitButton = document.getElementById('submitButton');
+        
+        submitButton.disabled = true;
+        submitButton.innerHTML = 'Submitting...';
+
+        fetch('/add_review', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: reviewText.value })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const reviewItem = document.createElement('li');
+            reviewItem.classList.add('list-group-item');
+            reviewItem.innerHTML = `<p class="mb-0">${data.text}</p>`;
+            document.getElementById('reviews-list').prepend(reviewItem);
+
+            reviewText.value = '';
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit Review';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            submitButton.disabled = false;
+            submitButton.innerHTML = 'Submit Review';
+        });
+    });
+</script>
+{% endblock %}

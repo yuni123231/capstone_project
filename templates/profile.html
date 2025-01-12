@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="profile-wrapper">
+    <div class="profile-card">
+        <!-- Tambahkan Gambar atau Ilustrasi -->
+        <div class="profile-image">
+            <img src="{{ url_for('static', filename='images/images.png') }}" alt="Ilustrasi Ibu Hamil">
+        </div>
+        <!-- Teks Konten -->
+        <h1 class="profile-greeting">Halo, <span>{{ username }}!</span></h1>
+        <p class="profile-message">Selamat datang di aplikasi kesehatan ibu hamil</p>
+        <p class="profile-age">Usia Anda: <strong>{{ age }} tahun</strong></p>
+        <p class="profile-description">
+            Semoga aplikasi ini dapat membantu dan bisa menyelesaikan masalah Anda. 😊
+        </p>
+        <p class="profile-footer">
+            Jaga kesehatan Anda dan si kecil dengan cinta! <span class="heart">❤️</span>
+        </p>
+        <!-- Elemen Dekoratif -->
+        <div class="profile-decor"></div>
+    </div>
+</div>
+{% endblock %}

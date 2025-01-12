@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Bunda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        /* Styling Navbar */
+        .navbar {
+            background: linear-gradient(90deg, #cd804d, #9b2909);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-logo img {
+            height: 70px;
+            margin-right: 20px;
+        }
+        .navbar-logo .logo-name {
+            font-size: 2.8em; /* Ukuran lebih besar */
+            font-weight: 700; /* Tebal */
+            background: linear-gradient(45deg, #fefdfc, #bea0a3); /* Gradien warna */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Membuat efek gradien hanya pada teks */
+            font-family: 'Caveat', cursive; /* Gaya tulisan tangan */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Bayangan teks agar terlihat jelas */
+            letter-spacing: 2px; /* Memberikan jarak antar huruf */
+        }
+
+        /* Fallback jika gradien tidak diterapkan */
+        .navbar-logo .logo-name.no-gradient {
+            color: #f5a623; /* Warna oranye solid */
+        }
+
+        .navbar-menu {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar-menu a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .navbar-menu a:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Styling Ikon Deteksi dan Chatbot */
+        .deteksi-icon, .chatbot-icon {
+            position: fixed;
+            background-color: #bf5610;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .deteksi-icon {
+            bottom: 100px; /* Di atas chatbot-icon */
+            right: 20px;
+        }
+        .chatbot-icon {
+            bottom: 20px;
+            right: 20px;
+        }
+        .deteksi-icon:hover, .chatbot-icon:hover {
+            background-color: #9a4510;
+        }
+        .deteksi-icon i, .chatbot-icon i {
+            font-size: 20px;
+        }
+
+        /* Styling Footer */
+        .footer {
+            background: linear-gradient(90deg, #cd804d, #9b2909);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    </style>
+</head>
+<body>
+    <!-- Navigasi Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo Ruang Bunda">
+                <span class="logo-name">Ruang Bunda</span>
+            </div>
+            <ul class="navbar-menu">
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/user_dashboard">Home</a></li>
+                <li><a href="/cek-hpl">Cek Prediksi HPL</a></li>
+                <li><a href="/ulasan">Ulasan</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Konten Halaman -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Ikon Deteksi -->
+    <div class="deteksi-icon" onclick="openDeteksi()">
+        <i class="fas fa-search"></i>
+    </div>
+
+    <!-- Ikon Chatbot -->
+    <div class="chatbot-icon" onclick="openChatbot()">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Ruang Bunda | Semua hak cipta dilindungi</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        function openDeteksi() {
+            window.location.href = '/deteksi_image';
+        }
+        function openChatbot() {
+            window.location.href = '/chatbot';
+        }
+    </script>
+</body>
+</html>

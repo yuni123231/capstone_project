@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Prediction Result</h1>
+    <div class="text-center mb-4">
+        <img src="{{ url_for('static', filename='uploads/' + food_info['image']) }}" 
+             alt="Food Image" 
+             class="img-fluid rounded shadow-sm" 
+             style="max-width: 100%; height: auto;">
+    </div>
+    <div class="card p-4 shadow">
+        <p><strong>Name:</strong> {{ food_info['nama'] }}</p>
+        <p><strong>Category:</strong> {{ food_info['kategori'] }}</p>
+        <p><strong>Reason:</strong> {{ food_info['alasan'] }}</p>
+        <p><strong>Recommendation:</strong> {{ food_info['rekomendasi'] }}</p>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{ url_for('index') }}" class="btn btn-primary">Try Again</a>
+    </div>
+</div>
+{% endblock %}

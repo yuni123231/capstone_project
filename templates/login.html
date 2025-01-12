@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #faece1, #ac7550);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .login-form {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 500px;
+            min-width: 300px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .login-form h2 {
+            margin-bottom: 20px;
+            color: #864414;
+            font-size: 28px;
+        }
+
+        .login-form label {
+            font-size: 16px;
+            margin: 8px 0;
+            display: block;
+        }
+
+        .login-form input[type="text"],
+        .login-form input[type="email"],
+        .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: all 0.3s;
+        }
+
+        .login-form input[type="text"]:focus,
+        .login-form input[type="email"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #a84040;
+            box-shadow: 0 0 8px rgba(182, 174, 243, 0.5);
+            outline: none;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ea9e68;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .login-form button:hover {
+            background-color: #ce8766;
+        }
+
+        .login-form .register-link {
+            display: block;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #de737d;
+            text-decoration: none;
+        }
+
+        .login-form .register-link:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f8d7da;
+            color: #f78691;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-form">
+        <h2>Login</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="alert">
+                    <ul>
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <form method="POST" action="{{ url_for('login') }}">
+            <label for="username">Username:</label>
+            <input type="text" name="username" required><br>
+        
+            <label for="email">Email:</label>
+            <input type="email" name="email" required><br>
+        
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+        
+            <button type="submit">Login</button>
+        </form>
+
+        <a href="{{ url_for('register') }}" class="register-link">Don't have an account? Register here</a>
+    </div>
+
+</body>
+</html>
